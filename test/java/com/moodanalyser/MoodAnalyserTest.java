@@ -11,7 +11,6 @@ public class MoodAnalyserTest {
         try {
             mood = moodAnalyser.analyseMood("Sad");
         } catch (MoodAnalysisException e) {
-            e.printStackTrace();
         }
         Assert.assertEquals("SAD",mood);
     }
@@ -22,7 +21,6 @@ public class MoodAnalyserTest {
         try {
             mood = moodAnalyser.analyseMood("Happy");
         } catch (MoodAnalysisException e) {
-            e.printStackTrace();
         }
         Assert.assertEquals("HAPPY",mood);
     }
@@ -38,5 +36,15 @@ public class MoodAnalyserTest {
         } catch (MoodAnalysisException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void givenNullMood_ShouldThrowException() {
+        MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+        try{
+            moodAnalyser.analyseMood(null);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_NULL,e.type);
+        }
+
     }
 }
